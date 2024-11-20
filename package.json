@@ -1,0 +1,32 @@
+{
+  "name": "bid-app",
+  "version": "1.0.4",
+  "description": "bid app to store data",
+  "main": "main.js",
+  "build": {
+    "win": {
+      "icon": "img/bid.ico"
+    },
+    "mac": {
+      "icon": "img/bid.icns"
+    },
+    "linux": {
+      "icon": "img/bid.png"
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "rmdir /S /Q dist && electron-builder -w",
+    "postinstall": "electron-builder install-app-deps",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "james",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron/rebuild": "^3.6.2",
+    "electron": "^32.1.2"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  }
+}
