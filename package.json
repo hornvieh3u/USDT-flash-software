@@ -1,17 +1,17 @@
 {
-  "name": "bid-app",
-  "version": "1.0.4",
-  "description": "bid app to store data",
+  "name": "usdt-flash-software",
+  "version": "1.0.0",
+  "description": "usdt flash software",
   "main": "main.js",
   "build": {
     "win": {
-      "icon": "img/bid.ico"
+      "icon": "img/tether.ico"
     },
     "mac": {
-      "icon": "img/bid.icns"
+      "icon": "img/tether.icns"
     },
     "linux": {
-      "icon": "img/bid.png"
+      "icon": "img/tether.png"
     }
   },
   "scripts": {
@@ -24,6 +24,7 @@
   "license": "ISC",
   "devDependencies": {
     "@electron/rebuild": "^3.6.2",
+    "electron-builder": "^25.1.8",
     "electron": "^32.1.2"
   },
   "dependencies": {

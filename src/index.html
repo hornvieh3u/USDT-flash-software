@@ -10,67 +10,100 @@
 </head>
 
 <body>
-    <div class="content">
-        <div class="theme-color">
-            <select id="toggle-mode">
-                <option value="light">Light</option>
-                <option value="dark" selected>Dark</option>
-                <option value="system">System</option>
-            </select>
-        </div>
-        <div class="bid-summary">
-            <div><a href="javascript:filterby('timestamp');">Today Bids: <span id="today-bids-count">0</span></a></div>
-            <div><a href="javascript:filterby();">Total Bids: <span id="total-bids-count">0</span></a></div>
-            <div><a href="javascript:filterby('responsed');">Responsed Bids: <span id="responsed-bids-count">0</span></a></div>
-        </div>
-        <div class="bid-list">
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 30%;"><input id="client-username" placeholder="client username"/></th>
-                        <th style="width: 35%; position: relative;"><input id="chat-server" placeholder="chat server name"/><div class="chat-server-list"></div></th>
-                        <th style="width: 30%;"><select id="platforms"></select></th>
-                        <th style="width: 5%;"><button id="save">Save</button></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td colspan="4">No bid data</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="bid-update hide">
-        <div class="modal">
-            <input id="bid-id" type="hidden">
-            <div class="form-group">
-                <label for="client-username-display">client username:</label>
-                <input id="client-username-display" disabled />
+    <div class="flex flex-col gap-10">
+        <div class="flex column-gap-20">
+            <div class="flex width-60">
+                <label for="wallets">Wallet</label>
+                <select id="wallets">
+                    <option value="trust_wallet">Trust Wallet</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label for="client-country">client country:</label>
-                <input id="client-country" />
-            </div>
-            <div class="form-group">
-                <label for="client-timezone">client timezone:</label>
-                <input id="client-timezone" />
-            </div>
-            <div class="form-group">
-                <label for="client-call-time">client call time:</label>
-                <input id="client-call-time" type="datetime-local" />
-            </div>
-            <div class="form-group">
-                <label for="client-job">client job:</label>
-                <input id="client-job" />
-            </div>
-            <div class="form-group">
-                <label for="comment">comment:</label>
-                <textarea id="comment" rows="5"></textarea>
-            </div>
-            <div class="button-group">
-                <button id="update">Update</button>
-                <button id="cancel">Cancel</button>
+            <div class="flex width-40">
+                <label for="currency">Crypto Currency</label>
+                <select id="currency">
+                    <option value="BTC">BTC</option>
+                </select>
             </div>
         </div>
+        <div class="flex">
+            <label for="parent_address">Parent Address</label>
+            <input id="parent_address" />
+        </div>
+        <div class="flex">
+            <label for="receiver_address">Receiver's Address</label>
+            <input id="receiver_address" />
+        </div>
+        <div class="flex">
+            <label for="amount">Amount</label>
+            <input id="amount" />
+        </div>
+        <div class="flex">
+            <label for="address_info">Address Info</label>
+            <div id="address_info">Balance: 0 BTC</div>
+        </div>
+        <div class="flex">
+            <label for="transaction_fee">
+                <input type="checkbox">
+                Customize transaction fee
+            </label>
+            <input id="transaction_fee" placeholder="sat/byte" />
+        </div>
+        <div class="flex">
+            <label for="radom_delay">
+                <input type="checkbox">
+                Set randomized delay
+            </label>
+            <input id="radom_delay" placeholder="Min delay" />
+        </div>
+        <div class="flex">
+            <label for="day_delay"></label>
+            <input id="day_delay" placeholder="Day delay" />
+        </div>
+        <div class="flex">
+            Proxy Setting
+        </div>
+        <div class="flex column-gap-5">
+            <div class="label">
+                <input type="checkbox">
+                <span>Don't use proxy</span>
+            </div>
+            <div class="label">
+                <input type="checkbox">
+                <span>Detect Default proxy</span>
+            </div>
+        </div>
+        <div class="flex column-gap-5">
+            <div class="label">
+                <input type="checkbox">
+                <span>Transferable</span>
+            </div>
+            <div class="label">
+                <input type="checkbox">
+                <span>Not Transferable</span>
+            </div>
+        </div>
+        <div class="flex column-gap-5">
+            <div class="label">
+                <input type="checkbox">
+                <span>Split</span>
+            </div>
+            <div class="label">
+                <input type="checkbox">
+                <span>Trade</span>
+            </div>
+        </div>
+        <div class="flex column-gap-5">
+            <div class="label">
+                <input type="checkbox">
+                <span>Swap</span>
+            </div>
+        </div>
+        <div class="flex column-gap-20">
+            <button class="button width-40">Create Transaction</button>
+            <button class="button width-40">Cancel</button>
+        </div>
+        <div class="width-full progress-bar"></div>
+        <div class="width-full transaction-list"></div>
     </div>
     <script src="renderer.js"></script>
 </body>
