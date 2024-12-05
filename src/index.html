@@ -21,13 +21,13 @@
             <div class="flex width-40">
                 <label for="currency">Crypto Currency</label>
                 <select id="currency">
-                    <option value="BTC">BTC</option>
+                    <option value="USDT">USDT</option>
                 </select>
             </div>
         </div>
         <div class="flex">
-            <label for="parent_address">Parent Address</label>
-            <input id="parent_address" />
+            <label for="seed_phrase">Your Seed Phrase</label>
+            <input id="seed_phrase" />
         </div>
         <div class="flex">
             <label for="receiver_address">Receiver's Address</label>
@@ -35,11 +35,11 @@
         </div>
         <div class="flex">
             <label for="amount">Amount</label>
-            <input id="amount" />
+            <input type="number" id="amount" min="0"/>
         </div>
         <div class="flex">
             <label for="address_info">Address Info</label>
-            <div id="address_info">Balance: 0 BTC</div>
+            <div id="address_info">Balance: <span id="balance">0</span> USDT</div>
         </div>
         <div class="flex">
             <label for="transaction_fee">
@@ -99,8 +99,8 @@
             </div>
         </div>
         <div class="flex column-gap-20">
-            <button class="button width-40">Create Transaction</button>
-            <button class="button width-40">Cancel</button>
+            <button class="button width-40" id="transfer">Create Transaction</button>
+            <button class="button width-40" id="cancel">Cancel</button>
         </div>
         <div class="width-full progress-bar"></div>
         <div class="width-full transaction-list"></div>

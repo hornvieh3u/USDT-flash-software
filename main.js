@@ -1,6 +1,33 @@
+require('dotenv').config();
+
 const { app, BrowserWindow, Tray, Notification, Menu, ipcMain, nativeTheme, nativeImage, screen } = require('electron/main')
 const path = require('node:path')
 const sqlite3 = require("sqlite3").verbose();
+const { ethers } = require('ethers');
+
+let wallet, usdtContract;
+
+const INFURA_URL = `https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`;
+const provider = new ethers.JsonRpcProvider(INFURA_URL);
+
+const USDT_ABI = [
+    "function transfer(address to, uint amount) returns (bool)",
+    "function balanceOf(address owner) view returns (uint)"
+];
+
+async function sendUSDT(toAddress, amount) {
+    const amountInUnits = ethers.parseUnits(amount.toString(), 6);
+
+    const tx = await usdtContract.transfer(toAddress, amountInUnits);
+    const result = await tx.wait();
+    console.log(`Sent ${amount} USDT to ${toAddress}, ${result}`);
+    return result;
+}
+
+async function getBalance() {
+    const balance = await usdtContract.balanceOf(wallet.address);
+    return ethers.formatUnits(balance, 6);
+}
 
 let db = new sqlite3.Database('E:/James/bids.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
@@ -95,6 +122,16 @@ ipcMain.handle("swap", (_, data) => {
     
 })
 
-ipcMain.handle("transfer", (_, data) => {
-    
+ipcMain.handle("transfer", async (_, data) => {
+    wallet = ethers.Wallet.fromPhrase(data.seedPhrase, provider);
+    usdtContract = new ethers.Contract(process.env.USDT_ADDRESS, USDT_ABI, wallet);
+
+    let balance = await getBalance();
+    if (balance < data.amount) {
+        return { status: false, msg: "Not enough balance!" };
+    }
+
+    let result = await sendUSDT(data.receiverAddress, data.amount);
+
+    return { status: true };
 })

@@ -24,10 +24,12 @@
   "license": "ISC",
   "devDependencies": {
     "@electron/rebuild": "^3.6.2",
-    "electron-builder": "^25.1.8",
-    "electron": "^32.1.2"
+    "electron": "^32.1.2",
+    "electron-builder": "^25.1.8"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.4",
     "sqlite3": "^5.1.6"
   }
 }
